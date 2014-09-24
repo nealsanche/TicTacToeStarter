@@ -1,0 +1,1 @@
+This is an empty Tic Tac Toe for Android game shell, and you should fork me and write your own game.
