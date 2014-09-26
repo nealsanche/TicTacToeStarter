@@ -19,7 +19,7 @@ import org.robolectric.annotation.Config;
 public class ExampleUnitTest {
 
     @Test
-    public void failingTest() {
+    public void faileractionsnteractionsTest() {
         Assert.assertTrue(false);
     }
 }
