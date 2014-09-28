@@ -5,8 +5,33 @@ package com.robotsandpencils.tictactoe.models;
  */
 public class GameBoard {
 
-    // array for each row/diag
-    // method for play
-    // var for turn
+    private SpaceType board[][] = new SpaceType[3][3];
+    private SpaceType currentTurn;
+
+    public GameBoard()
+    {
+        InitializeBoard();
+    }
+
+    private void InitializeBoard() {
+        for (int row= 0; row <3; row++)
+            for (int col=0; col<3; col++)
+                board[row][col] = SpaceType.Empty;
+
+        currentTurn = SpaceType.Crosses;
+    }
+
+    public void PlayPiece()
+    {
+        currentTurn = currentTurn == SpaceType.Crosses
+                        ? SpaceType.Noughts
+                        : SpaceType.Crosses;
+    }
+
+    public SpaceType getCurrentTurn()
+    {
+        return currentTurn;
+    }
+
 
 }

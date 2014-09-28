@@ -1,5 +1,8 @@
 package com.robotsandpencils.tictactoe;
 
+import com.robotsandpencils.tictactoe.models.GameBoard;
+import com.robotsandpencils.tictactoe.models.SpaceType;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,10 +16,34 @@ import org.robolectric.annotation.Config;
 @RunWith(RobolectricTestRunner.class)
 public class GameBoardShould {
 
+    @Test
+    public void StartWithCrosses() {
+        // arrange
+        GameBoard board = new GameBoard();
+
+        // act
+        // - nothing to do here, checking starting point
+
+        // assert
+        Assert.assertTrue(board.getCurrentTurn() == SpaceType.Crosses);
+    }
 
     @Test
     public void AlternatePlayersAfterMove() {
-        Assert.assertTrue(false);
+        // arrange
+        GameBoard board = new GameBoard();
+
+        // act
+        board.PlayPiece();
+
+        // assert
+        Assert.assertTrue(board.getCurrentTurn() == SpaceType.Noughts);
+
+        // act - testing alternation, need a second play...
+        board.PlayPiece();
+
+        // assert - ...and assertion
+        Assert.assertTrue(board.getCurrentTurn() == SpaceType.Crosses);
     }
 
     @Test

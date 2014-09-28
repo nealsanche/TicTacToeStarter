@@ -7,24 +7,24 @@ package com.robotsandpencils.tictactoe.models;
 public class GameHistory {
 
     private int crossScore;
-    private int oughtScore;
-    private int kittyScore;
+    private int noughtScore;
+    private int kittehScore;
 
     public GameHistory() {
         crossScore = 5;
-        oughtScore = 3;
-        kittyScore = 8;
+        noughtScore = 3;
+        kittehScore = 8;
     }
 
     public int getCrossScore() {
         return crossScore;
     }
 
-    public int getOughtScore() {
-        return oughtScore;
+    public int getNoughtScore() {
+        return noughtScore;
     }
 
-    public int getKittyScore() {
-        return kittyScore;
+    public int getKittehScore() {
+        return kittehScore;
     }
 }

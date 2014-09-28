@@ -37,6 +37,7 @@ android {
 
 robolectric {
     include '**/*Test.class'
+    include '**/*Should.class'
     exclude '**/espresso/**/*.class'
 }
 
