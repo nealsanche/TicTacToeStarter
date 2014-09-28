@@ -4,13 +4,13 @@ package com.robotsandpencils.tictactoe.models;
  * Created by james_000 on 9/26/2014.
  */
 // @PresentationModel
-public class GameInstance {
+public class GameHistory {
 
     private int crossScore;
     private int oughtScore;
     private int kittyScore;
 
-    public GameInstance() {
+    public GameHistory() {
         crossScore = 5;
         oughtScore = 3;
         kittyScore = 8;
