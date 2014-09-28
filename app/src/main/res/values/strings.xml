@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Tik Tak Tow</string>
-    <string name="initial_info_text">Looks like I\'m all set to start. :o)</string>
+    <!-- General -->
+    <string name="app_name">Tic Tac Toe</string>
+    <string name="initial_info_text">Game game game</string>
     <string name="action_settings">Settings</string>
+
+    <!-- Settings -->
+    <string name="action_settings_clear_scores">Clear Scores</string>
+    <string name="msg_prompt_clear_scores">Are you sure you want to clear all saved scores?</string>
+    <string name="msg_confirm_clear_scores">Scores have been cleared.</string>
+
+    <!-- Game Board Elements -->
+    <string name="score">Score</string>
+    <string name="p1_name">P1</string>
+    <string name="p2_name">P2</string>
+    <string name="kitteh_name">Kitteh</string>
 
 </resources>

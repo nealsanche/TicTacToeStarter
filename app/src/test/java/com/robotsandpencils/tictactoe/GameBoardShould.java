@@ -21,8 +21,7 @@ public class GameBoardShould {
         // arrange
         GameBoard board = new GameBoard();
 
-        // act
-        // - nothing to do here, checking starting point
+        // act - nothing to do here, checking starting point
 
         // assert
         Assert.assertTrue(board.getCurrentTurn() == SpaceType.Crosses);
