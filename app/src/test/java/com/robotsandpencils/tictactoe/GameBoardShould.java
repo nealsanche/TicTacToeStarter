@@ -153,14 +153,45 @@ public class GameBoardShould {
     }
 
     @Test
+    public void ProperlyIncrementPlayerCounts()
+    {
+        // arrange
+        GameBoard board = new GameBoard();
+
+        // act
+        board.PlayPiece(2, 0);
+        Assert.assertTrue(board.TotalCrossesPlays() == 1);
+        Assert.assertTrue(board.TotalNoughtsPlays() == 0);
+        board.PlayPiece(0, 1);
+
+        // assert
+        Assert.assertTrue(board.TotalCrossesPlays() == 1);
+        Assert.assertTrue(board.TotalNoughtsPlays() == 1);
+
+        // act 2
+        board.PlayPiece(1, 1);
+        board.PlayPiece(1, 0);
+
+        // assert - testing advancement
+        Assert.assertTrue(board.TotalCrossesPlays() == 2);
+        Assert.assertTrue(board.TotalNoughtsPlays() == 2);
+    }
+
+    @Test
     public void ResetWhenResetActionInvoked() {
         // arrange
         GameBoard board = new GameBoard();
-        
+
         // act
+        board.PlayPiece(2, 0);
+        board.Reset();
 
         // assert
-        Assert.assertTrue(false);
+        Assert.assertTrue(board.getCurrentTurn() == SpaceType.Crosses);
+        Assert.assertFalse(board.PlayerHasWon());
+        Assert.assertTrue(board.TotalCrossesPlays() == 0);
+        Assert.assertTrue(board.TotalNoughtsPlays() == 0);
+
     }
 
 }

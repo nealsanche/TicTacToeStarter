@@ -128,4 +128,32 @@ public class GameBoard {
     public boolean PlayerHasWon() {
         return gameWinner != SpaceType.Empty;
     }
+
+    public int TotalCrossesPlays()
+    {
+        int totalPlays = getTotalPlays(SpaceType.Crosses);
+        return totalPlays;
+    }
+
+    public int TotalNoughtsPlays()
+    {
+        int totalPlays = getTotalPlays(SpaceType.Noughts);
+        return totalPlays;
+    }
+
+    private int getTotalPlays(SpaceType player) {
+        int totalPlays = 0;
+
+        for (int row = 0; row < BOARD_SIZE; row++)
+            for (int col = 0; col < BOARD_SIZE; col++)
+            {
+                if(board[row][col] == player)
+                    totalPlays++;
+            }
+        return totalPlays;
+    }
+
+    public void Reset() {
+        InitializeBoard();
+    }
 }
