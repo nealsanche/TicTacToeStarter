@@ -110,10 +110,10 @@ public class GameBoardShould {
         int yCol = 1;
 
         // act
-        board.PlayPiece(0, xCol);
-        board.PlayPiece(0, yCol);
-        board.PlayPiece(1, xCol);
-        board.PlayPiece(1, yCol);
+        board.PlayPiece(0, xCol); Assert.assertFalse(board.PlayerHasWon());
+        board.PlayPiece(0, yCol); Assert.assertFalse(board.PlayerHasWon());
+        board.PlayPiece(1, xCol); Assert.assertFalse(board.PlayerHasWon());
+        board.PlayPiece(1, yCol); Assert.assertFalse(board.PlayerHasWon());
         board.PlayPiece(2, xCol);
 
         // assert
@@ -122,8 +122,40 @@ public class GameBoardShould {
     }
 
     @Test
-    public void DetectDiagonalWins() {
-        Assert.assertTrue(false);
+    public void DetectDownDiagonalWins() {
+        System.out.println("Starting DetectDownDiagonalWins test...");
+        // arrange
+        GameBoard board = new GameBoard();
+
+        // act
+        board.PlayPiece(0, 0); Assert.assertFalse(board.PlayerHasWon());
+        board.PlayPiece(0, 1); Assert.assertFalse(board.PlayerHasWon());
+        board.PlayPiece(1, 1); Assert.assertFalse(board.PlayerHasWon());
+        board.PlayPiece(1, 0); Assert.assertFalse(board.PlayerHasWon());
+        board.PlayPiece(2, 2);
+
+        // assert
+        System.out.println("      ...DetectDownDiagonalWins");
+        Assert.assertTrue(board.PlayerHasWon());
+    }
+
+
+    @Test
+    public void DetectUpDiagonalWins() {
+        System.out.println("Starting DetectUpDiagonalWins test...");
+        // arrange
+        GameBoard board = new GameBoard();
+
+        // act
+        board.PlayPiece(2, 0); Assert.assertFalse(board.PlayerHasWon());
+        board.PlayPiece(0, 1); Assert.assertFalse(board.PlayerHasWon());
+        board.PlayPiece(1, 1); Assert.assertFalse(board.PlayerHasWon());
+        board.PlayPiece(1, 0); Assert.assertFalse(board.PlayerHasWon());
+        board.PlayPiece(0, 2);
+
+        // assert
+        System.out.println("      ...DetectUpDiagonalWins");
+        Assert.assertTrue(board.PlayerHasWon());
     }
 
     @Test

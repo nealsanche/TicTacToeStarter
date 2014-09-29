@@ -94,7 +94,9 @@ public class GameBoard {
         if ((row == 0 & col == 0) || (row == 1 & col == 1) || (row == 2 & col == 2))
         {
             downDiagonalMapCount = spaceMap[DOWN_DIAGONAL_MAP_INDEX];
-            spaceMap[DOWN_DIAGONAL_MAP_INDEX] = downDiagonalMapCount++;
+            downDiagonalMapCount++;
+            spaceMap[DOWN_DIAGONAL_MAP_INDEX] = downDiagonalMapCount;
+            System.out.format(" Row: %d | Map: %d | Value: %d \n", row, DOWN_DIAGONAL_MAP_INDEX, downDiagonalMapCount);
         }
 
         // test/compute for up-diagonal line  "/"
@@ -102,15 +104,14 @@ public class GameBoard {
         if ((row == 2 & col == 0) || (row == 1 & col == 1) || (row == 0 & col == 2))
         {
             upDiagonalMapCount = spaceMap[UP_DIAGONAL_MAP_INDEX];
-            spaceMap[UP_DIAGONAL_MAP_INDEX] = upDiagonalMapCount++;
+            upDiagonalMapCount++;
+            spaceMap[UP_DIAGONAL_MAP_INDEX] = upDiagonalMapCount;
         }
-
-
-        System.out.format(" Row: %d | Map: %d | Value: %d", row, rowMap, rowMapCount);
 
         // we only need to know the highest of the values
         int highestValue = Math.max(rowMapCount, colMapCount);
-        highestValue = Math.max(highestValue, 0);
+        highestValue = Math.max(highestValue, downDiagonalMapCount);
+        highestValue = Math.max(highestValue, upDiagonalMapCount);
 
         return highestValue;
     }
