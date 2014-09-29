@@ -33,6 +33,17 @@ public class GameBoardShould {
     }
 
     @Test
+    public void StartWithNoWinner() {
+        // arrange
+        GameBoard board = new GameBoard();
+
+        // act - nothing to do here, checking starting point
+
+        // assert
+        Assert.assertFalse(board.PlayerHasWon());
+    }
+
+    @Test
     public void AlternatePlayersAfterMove() {
         // arrange
         GameBoard board = new GameBoard();
@@ -65,18 +76,21 @@ public class GameBoardShould {
     }
 
     @Test
-    public void ResetWhenResetActionInvoked() {
+    public void DetectHorizontalWins() {
         // arrange
+        GameBoard board = new GameBoard();
+        int xRow = 0;
+        int yRow = 1;
 
         // act
+        board.PlayPiece(xRow, 0);
+        board.PlayPiece(yRow, 0);
+        board.PlayPiece(xRow, 1);
+        board.PlayPiece(yRow, 1);
+        board.PlayPiece(xRow, 2);
 
         // assert
-        Assert.assertTrue(false);
-    }
-
-    @Test
-    public void DetectHorizontalWins() {
-        Assert.assertTrue(false);
+        Assert.assertTrue(board.PlayerHasWon());
     }
 
     @Test
@@ -86,6 +100,16 @@ public class GameBoardShould {
 
     @Test
     public void DetectDiagonalWins() {
+        Assert.assertTrue(false);
+    }
+
+    @Test
+    public void ResetWhenResetActionInvoked() {
+        // arrange
+
+        // act
+
+        // assert
         Assert.assertTrue(false);
     }
 
