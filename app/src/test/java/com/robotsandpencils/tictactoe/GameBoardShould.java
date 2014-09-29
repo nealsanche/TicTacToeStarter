@@ -83,11 +83,11 @@ public class GameBoardShould {
 
     @Test
     public void DetectHorizontalWins() {
+        System.out.println("Starting DetectHorizontalWins test...");
         // arrange
         GameBoard board = new GameBoard();
         int xRow = 0;
         int yRow = 1;
-        System.out.println("Starting test...");
 
         // act
         board.PlayPiece(xRow, 0);
@@ -97,12 +97,28 @@ public class GameBoardShould {
         board.PlayPiece(xRow, 2);
 
         // assert
+        System.out.println("      ...DetectHorizontalWins");
         Assert.assertTrue(board.PlayerHasWon());
     }
 
     @Test
     public void DetectVerticalWins() {
-        Assert.assertTrue(false);
+        System.out.println("Starting DetectVerticalWins test...");
+        // arrange
+        GameBoard board = new GameBoard();
+        int xCol = 0;
+        int yCol = 1;
+
+        // act
+        board.PlayPiece(0, xCol);
+        board.PlayPiece(0, yCol);
+        board.PlayPiece(1, xCol);
+        board.PlayPiece(1, yCol);
+        board.PlayPiece(2, xCol);
+
+        // assert
+        System.out.println("      ...DetectVerticalWins");
+        Assert.assertTrue(board.PlayerHasWon());
     }
 
     @Test
