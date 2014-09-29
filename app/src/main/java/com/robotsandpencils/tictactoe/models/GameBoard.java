@@ -21,8 +21,10 @@ public class GameBoard {
         currentTurn = SpaceType.Crosses;
     }
 
-    public void PlayPiece()
+    public void PlayPiece(int row, int col)
     {
+        board[row][col] = currentTurn;
+
         currentTurn = currentTurn == SpaceType.Crosses
                         ? SpaceType.Noughts
                         : SpaceType.Crosses;
@@ -33,5 +35,8 @@ public class GameBoard {
         return currentTurn;
     }
 
+    public SpaceType[][] getBoard() {
+        return board;
+    }
 
 }
