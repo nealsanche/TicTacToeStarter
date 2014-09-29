@@ -81,11 +81,13 @@ public class GameBoard {
 
         // compute the horizontal value  "-"
         int rowMapCount = spaceMap[rowMap];
-        spaceMap[rowMap] = rowMapCount++;
+        rowMapCount++;
+        spaceMap[rowMap] = rowMapCount;
 
         // compute the vertical value  "|"
         int colMapCount = spaceMap[colMap];
-        spaceMap[colMap] = colMapCount++;
+        colMapCount++;
+        spaceMap[colMap] = colMapCount;
 
         // test/compute for down-diagonal line  "\"
         int downDiagonalMapCount = 0;
