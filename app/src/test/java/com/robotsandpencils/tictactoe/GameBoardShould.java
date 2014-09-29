@@ -5,8 +5,10 @@ import com.robotsandpencils.tictactoe.models.SpaceType;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
+import org.robolectric.shadows.ShadowLog;
 
 /**
  * Created by james_000 on 9/28/2014.
@@ -20,6 +22,10 @@ import org.robolectric.annotation.Config;
 @Config(emulateSdk = 18)
 @RunWith(RobolectricTestRunner.class)
 public class GameBoardShould {
+
+    static {
+        ShadowLog.stream = System.out;
+    }
 
     @Test
     public void StartWithCrosses() {
@@ -81,6 +87,7 @@ public class GameBoardShould {
         GameBoard board = new GameBoard();
         int xRow = 0;
         int yRow = 1;
+        System.out.println("Starting test...");
 
         // act
         board.PlayPiece(xRow, 0);

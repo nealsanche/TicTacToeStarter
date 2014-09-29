@@ -14,6 +14,8 @@ public class GameBoard {
 
     // a played piece map gives us O(1) for solving a win
     private Map<SpaceType, int[]> playedSpaceMap;
+    private int[] crossesPlayedSpaceMap = new int[8];
+    private int[] noughtsPlayedSpaceMap = new int[8];
 
     public GameBoard()
     {
@@ -29,31 +31,63 @@ public class GameBoard {
 
         gameWinner = SpaceType.Empty;
 
-        playedSpaceMap = new HashMap<SpaceType, int[]>();
-        playedSpaceMap.put(SpaceType.Crosses, new int[9]);
-        playedSpaceMap.put(SpaceType.Noughts, new int[9]);
+        ResetPlayedSpaceMaps();
+    }
+
+    private void ResetPlayedSpaceMaps() {
+        for (int i=0; i<8;i++) {
+            crossesPlayedSpaceMap[i] = 0;
+            noughtsPlayedSpaceMap[i] = 0;
+        }
     }
 
     public void PlayPiece(int row, int col)
     {
+        System.out.format("piece played at %d %d \n", row, col);
+
         // update the board
         board[row][col] = currentTurn;
 
         // check for win
-        int pieceIndex = row * 3 + col;
-        int totalPlaysAtIndex = playedSpaceMap.get(currentTurn)[pieceIndex];
-        if(++totalPlaysAtIndex == 2)
+        int totalPlaysAtIndex = UpdatePlaysAtIndex(currentTurn, row, col);
+        System.out.format(" checked piece map (val %d)\n", totalPlaysAtIndex);
+        if(totalPlaysAtIndex == 2)
         {
             gameWinner = currentTurn;
             return;
         }
-        playedSpaceMap.get(currentTurn)[pieceIndex] = totalPlaysAtIndex;
 
         // switch player
         currentTurn = currentTurn == SpaceType.Crosses
                         ? SpaceType.Noughts
                         : SpaceType.Crosses;
     }
+
+    // updates the correct plays for that row/column/diag and returns the updated value
+    public int UpdatePlaysAtIndex(SpaceType player, int row, int col)
+    {
+        int rowMap = row;
+//        int colMap = col + 3; // shift to upper part of array
+
+        // fetch the count
+        int newValue = player == SpaceType.Crosses
+                ? crossesPlayedSpaceMap[rowMap]
+                : noughtsPlayedSpaceMap[rowMap];
+
+        // increment the count
+        newValue++;
+
+        // update the relevant map
+        if(player == SpaceType.Crosses)
+            crossesPlayedSpaceMap[rowMap] = newValue;
+        else
+            noughtsPlayedSpaceMap[rowMap] = newValue;
+
+        return newValue;
+    }
+
+
+
 
     public SpaceType getCurrentTurn()
     {
