@@ -61,7 +61,7 @@ public class GameBoardShould {
         Assert.assertTrue(board.getCurrentTurn() == SpaceType.Noughts);
 
         // act - testing alternation, need a second play...
-        board.PlayPiece(0, 0);
+        board.PlayPiece(0, 1);
 
         // assert - ...and assertion
         Assert.assertTrue(board.getCurrentTurn() == SpaceType.Crosses);
@@ -191,7 +191,22 @@ public class GameBoardShould {
         Assert.assertFalse(board.PlayerHasWon());
         Assert.assertTrue(board.TotalCrossesPlays() == 0);
         Assert.assertTrue(board.TotalNoughtsPlays() == 0);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void NotLetMultiplePlaysOnSameSquare()
+    {
+        // arrange
+        GameBoard board = new GameBoard();
+
+        // act
+        board.PlayPiece(0, 0);
+        board.PlayPiece(0, 0);
 
     }
 
+//    @Test(expected = ArithmeticException.class)
+//    public void divisionWithException() {
+//        int i = 1/0;
+//    }
 }

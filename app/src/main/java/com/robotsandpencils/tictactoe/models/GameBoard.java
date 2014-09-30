@@ -49,14 +49,15 @@ public class GameBoard {
 
     public void PlayPiece(int row, int col)
     {
-        System.out.format("piece played at %d %d \n", row, col);
+        // prevent multi-plays
+        if(board[row][col] != SpaceType.Empty)
+            throw new IllegalArgumentException("A player cannot play twice on the same square.");
 
         // update the board
         board[row][col] = currentTurn;
 
         // check for win
         int totalPlaysAtIndex = UpdatePlaysAtIndex(currentTurn, row, col);
-        System.out.format(" checked piece map (val %d)\n", totalPlaysAtIndex);
         if(totalPlaysAtIndex >= WIN_THRESHOLD)
         {
             gameWinner = currentTurn;
