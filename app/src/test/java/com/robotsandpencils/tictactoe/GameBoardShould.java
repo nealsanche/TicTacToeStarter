@@ -28,6 +28,26 @@ public class GameBoardShould {
     }
 
     @Test
+    public void RaiseGameOverEventWhenGameIsOver()
+    {
+        // arrange
+        GameBoard board = new GameBoard();
+        int xRow = 0;
+        int yRow = 1;
+
+        // act
+        board.PlayPiece(xRow, 0);
+        board.PlayPiece(yRow, 0);
+        board.PlayPiece(xRow, 1);
+        board.PlayPiece(yRow, 1);
+        board.PlayPiece(xRow, 2);
+
+        // assert
+        // todo: figure out how to test event bus
+        Assert.assertTrue(false);
+    }
+
+    @Test
     public void StartWithCrosses() {
         // arrange
         GameBoard board = new GameBoard();
