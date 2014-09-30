@@ -68,8 +68,7 @@ public class GameBoardShould {
     }
 
     @Test
-    public  void PlayPieceInCorrectPosition()
-    {
+    public  void PlayPieceInCorrectPosition() {
         // arrange
         GameBoard board = new GameBoard();
         int centre = 1;
@@ -99,6 +98,7 @@ public class GameBoardShould {
         // assert
         System.out.println("      ...DetectHorizontalWins");
         Assert.assertTrue(board.PlayerHasWon());
+        Assert.assertTrue(board.getGameOver());
     }
 
     @Test
@@ -117,6 +117,7 @@ public class GameBoardShould {
 
         // assert
         Assert.assertTrue(board.PlayerHasWon());
+        Assert.assertTrue(board.getGameOver());
     }
 
     @Test
@@ -133,8 +134,8 @@ public class GameBoardShould {
 
         // assert
         Assert.assertTrue(board.PlayerHasWon());
+        Assert.assertTrue(board.getGameOver());
     }
-
 
     @Test
     public void DetectUpDiagonalWins() {
@@ -150,11 +151,35 @@ public class GameBoardShould {
 
         // assert
         Assert.assertTrue(board.PlayerHasWon());
+        Assert.assertTrue(board.getGameOver());
     }
 
     @Test
-    public void ProperlyIncrementPlayerCounts()
-    {
+    public void DetectTieGame (){
+        // arrange
+        GameBoard board = new GameBoard();
+
+        // act - this is a tie game with
+        //    x | o | x
+        //    o | x | x
+        //    o | x | o
+        board.PlayPiece(0, 0); Assert.assertFalse(board.PlayerHasWon());
+        board.PlayPiece(0, 1); Assert.assertFalse(board.PlayerHasWon());
+        board.PlayPiece(0, 2); Assert.assertFalse(board.PlayerHasWon());
+        board.PlayPiece(1, 0); Assert.assertFalse(board.PlayerHasWon());
+        board.PlayPiece(1, 1); Assert.assertFalse(board.PlayerHasWon());
+        board.PlayPiece(2, 0); Assert.assertFalse(board.PlayerHasWon());
+        board.PlayPiece(1, 2); Assert.assertFalse(board.PlayerHasWon());
+        board.PlayPiece(2, 2); Assert.assertFalse(board.PlayerHasWon());
+        board.PlayPiece(2, 1); Assert.assertFalse(board.PlayerHasWon());
+
+        // assert
+        Assert.assertFalse(board.PlayerHasWon());
+        Assert.assertTrue(board.getGameOver());
+    }
+
+    @Test
+    public void ProperlyIncrementPlayerCounts()    {
         // arrange
         GameBoard board = new GameBoard();
 
@@ -194,8 +219,7 @@ public class GameBoardShould {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void NotLetMultiplePlaysOnSameSquare()
-    {
+    public void NotLetMultiplePlaysOnSameSquare()    {
         // arrange
         GameBoard board = new GameBoard();
 
@@ -205,8 +229,5 @@ public class GameBoardShould {
 
     }
 
-//    @Test(expected = ArithmeticException.class)
-//    public void divisionWithException() {
-//        int i = 1/0;
-//    }
+
 }

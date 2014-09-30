@@ -22,6 +22,7 @@ public class GameBoard {
     private Map<SpaceType, int[]> playedSpaceMap;
     private int[] crossesPlayedSpaceMap = new int[PLAYS_MAP_SIZE];
     private int[] noughtsPlayedSpaceMap = new int[PLAYS_MAP_SIZE];
+    private boolean gameOver = false;
 
     public GameBoard()
     {
@@ -47,8 +48,9 @@ public class GameBoard {
         }
     }
 
-    public void PlayPiece(int row, int col)
-    {
+    public void PlayPiece(int row, int col)    {
+        // prevent plays on game over
+
         // prevent multi-plays
         if(board[row][col] != SpaceType.Empty)
             throw new IllegalArgumentException("A player cannot play twice on the same square.");
@@ -61,6 +63,13 @@ public class GameBoard {
         if(totalPlaysAtIndex >= WIN_THRESHOLD)
         {
             gameWinner = currentTurn;
+            gameOver = true;
+            return;
+        }
+
+        // check for tie
+        if ( (getTotalPlays(SpaceType.Noughts) + getTotalPlays(SpaceType.Crosses) == 9) && (gameWinner == SpaceType.Empty)) {
+            gameOver = true;
             return;
         }
 
@@ -115,6 +124,11 @@ public class GameBoard {
         highestValue = Math.max(highestValue, upDiagonalMapCount);
 
         return highestValue;
+    }
+
+    public boolean getGameOver()
+    {
+        return gameOver;
     }
 
     public SpaceType getCurrentTurn()
