@@ -1,5 +1,7 @@
 package com.robotsandpencils.tictactoe.models;
 
+import com.google.common.eventbus.EventBus;
+
 import java.util.Map;
 
 /**
@@ -22,11 +24,14 @@ public class GameBoard {
     private Map<SpaceType, int[]> playedSpaceMap;
     private int[] crossesPlayedSpaceMap = new int[PLAYS_MAP_SIZE];
     private int[] noughtsPlayedSpaceMap = new int[PLAYS_MAP_SIZE];
+
+    private EventBus eventBus;
     private boolean gameOver = false;
 
     public GameBoard()
     {
         InitializeBoard();
+        eventBus = new EventBus();
     }
 
     private void InitializeBoard() {
@@ -63,13 +68,13 @@ public class GameBoard {
         if(totalPlaysAtIndex >= WIN_THRESHOLD)
         {
             gameWinner = currentTurn;
-            gameOver = true;
+            EndGame(currentTurn);
             return;
         }
 
-        // check for tie
+        // check for tie - 9 plays and no winner declared
         if ( (getTotalPlays(SpaceType.Noughts) + getTotalPlays(SpaceType.Crosses) == 9) && (gameWinner == SpaceType.Empty)) {
-            gameOver = true;
+            EndGame(currentTurn);
             return;
         }
 
@@ -77,6 +82,19 @@ public class GameBoard {
         currentTurn = currentTurn == SpaceType.Crosses
                         ? SpaceType.Noughts
                         : SpaceType.Crosses;
+    }
+
+    private void EndGame(SpaceType winner) {
+        gameOver = true;
+
+        GameOverEvent event = new GameOverEvent();
+        event.setWinner(currentTurn);
+        eventBus.post(event);
+    }
+
+    public void RegisterEndGameHandler(Object handler)
+    {
+        eventBus.register(handler);
     }
 
     // updates the correct plays for that row/column/diag and returns the updated value
