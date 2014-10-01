@@ -33,7 +33,7 @@ public class GameBoardShould {
     }
 
     @Subscribe
-    private void handleGameOverEvent(GameOverEvent event)
+    public void handleGameOverEvent(GameOverEvent event)
     {
         System.out.println("game over!");
         gameEventRaised = true;
@@ -57,8 +57,8 @@ public class GameBoardShould {
 
         // assert
         // todo: figure out how to test event bus the correct way?
-        //Thread.sleep(200); // let the event fire?
-        //Assert.assertTrue(gameEventRaised); // this assert always fails :o/
+        Thread.sleep(200); // let the event fire?
+        Assert.assertTrue(gameEventRaised); // this assert always fails :o/
         // mockito? other mocking framework?
     }
 
