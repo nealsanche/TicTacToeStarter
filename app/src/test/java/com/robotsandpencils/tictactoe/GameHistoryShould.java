@@ -7,19 +7,26 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
 /**
- * This is a sample Robolectric unit test. This would be run with:
- * ./gradle testDebug
- * <p/>
- * and the output would be found at:
- * <p/>
- * ./app/build/test-report/debug/index.html
+ * Created by james_000 on 9/28/2014.
  */
 @Config(emulateSdk = 18)
 @RunWith(RobolectricTestRunner.class)
-public class ExampleUnitTest {
+public class GameHistoryShould {
 
     @Test
-    public void failingTest() {
+    public void ResetWhenResetActionInvoked() {
         Assert.assertTrue(false);
     }
+
+    @Test
+    public void AdvanceOughtScoreOnOughtWin() {
+        Assert.assertTrue(false);
+    }
+
+    @Test
+    public void AdvanceCrossScoreOnCrossWin() {
+        Assert.assertTrue(false);
+    }
+
+
 }

@@ -37,11 +37,13 @@ android {
 
 robolectric {
     include '**/*Test.class'
+    include '**/*Should.class'
     exclude '**/espresso/**/*.class'
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    //compile group: 'com.google.guava', name: 'guava', version: '15.0'
 
     // Espresso
     androidTestCompile files('lib/espresso-1.1.jar', 'lib/testrunner-1.1.jar', 'lib/testrunner-runtime-1.1.jar')
@@ -74,6 +76,7 @@ dependencies {
     androidTestCompile 'com.squareup:fest-android:1.0.0'
 
     compile 'com.jakewharton:butterknife:5.1.2'
+    compile 'com.google.guava:guava:14.0.1'
 
     // You can add more dependencies, see http://gradleplease.appspot.com/
 }
